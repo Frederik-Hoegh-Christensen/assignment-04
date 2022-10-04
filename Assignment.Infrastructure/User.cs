@@ -2,7 +2,11 @@ namespace Assignment.Infrastructure;
 
 public class User
 {
+    [Required]
     public int Id { get; set; }
+
+    
+    [MaxLength(100)]
     public string Name { get; set; }
 
     [EmailAddress]
