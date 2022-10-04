@@ -28,6 +28,7 @@ public class WorkItemRepositoryTests : IDisposable
         item.Tags.Add(new Tag("atag"));
         context.SaveChanges();
         
+        
 
         _kanbanContext = context;
         _repository = new WorkItemRepository(_kanbanContext);
@@ -80,6 +81,11 @@ public class WorkItemRepositoryTests : IDisposable
     {
         var list = _repository.ReadByTag("atag");
         list.Count.Should().Be(1);
+    }
+
+    public void Read_by_user_id_should_return_count_1()
+    {
+
     }
 
     

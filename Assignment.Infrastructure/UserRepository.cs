@@ -28,7 +28,26 @@ public class UserRepository : IUserRepository
 
     public Response Delete(int userId, bool force = false)
     {
-        throw new NotImplementedException();
+        var entity = _context.Users
+                     .Where(u => u.Id == userId)
+                     .FirstOrDefault();
+
+
+        if (entity is not null && force == true)
+        {
+            _context.Remove(entity);
+            _context.SaveChanges();
+            return Response.Deleted;
+        }
+
+        if (entity != null)
+        {
+            _context.Remove(entity);
+            _context.SaveChanges();
+            return Response.Deleted;
+        }
+
+        else return Response.NotFound;
     }
 
     public UserDTO Find(int userId)
